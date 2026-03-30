@@ -25,34 +25,45 @@ export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section className="py-24 bg-[#F8F9FB]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left - Heading and Featured Client */}
-          <div>
-            <p className="text-[#FF5733] text-sm font-semibold uppercase tracking-wider mb-3">
-              Client Review
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0D0D1A] mb-12 text-balance">
-              Customized Solutions to Meet Client{" "}
-              <span className="text-[#FF5733]">Needs.</span>
+          <div className="space-y-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200">
+              <div className="w-2 h-2 rounded-full bg-[#FF5733]" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-gray-600">Client Review</span>
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-5xl font-bold text-[#111] text-balance">
+              Customized Solutions to Meet Client <span className="text-[#FF5733]">Needs.</span>
             </h2>
 
-            {/* Featured Client */}
-            <div className="flex items-center gap-4 p-6 bg-gray-50 rounded-2xl">
-              <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0">
-                <Image
-                  src={testimonials[activeIndex].image}
-                  alt={testimonials[activeIndex].name}
-                  fill
-                  className="object-cover"
-                />
+            {/* Featured Client Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-4 border-[#FF5733]/20">
+                  <Image
+                    src={testimonials[activeIndex].image}
+                    alt={testimonials[activeIndex].name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#111] text-lg">
+                    {testimonials[activeIndex].name}
+                  </h4>
+                  <p className="text-[#6B7280] text-sm">{testimonials[activeIndex].role}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-[#0D0D1A] text-lg">
-                  {testimonials[activeIndex].name}
-                </h4>
-                <p className="text-gray-600 text-sm">{testimonials[activeIndex].role}</p>
+              {/* Stars */}
+              <div className="flex gap-1">
+                {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-[#FF5733] text-[#FF5733]" />
+                ))}
               </div>
             </div>
           </div>
@@ -62,10 +73,10 @@ export function Testimonials() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+                className={`p-8 rounded-2xl transition-all duration-300 cursor-pointer border-2 ${
                   activeIndex === index
-                    ? "bg-[#0D0D1A] shadow-xl"
-                    : "bg-gray-50 hover:bg-gray-100"
+                    ? "bg-[#0D0D1A] border-[#FF5733] shadow-lg shadow-[#FF5733]/20"
+                    : "bg-white border-gray-200 hover:border-[#FF5733]/50"
                 }`}
                 onClick={() => setActiveIndex(index)}
               >
@@ -74,28 +85,26 @@ export function Testimonials() {
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 fill-[#FF5733] ${
-                        activeIndex === index ? "text-[#FF5733]" : "text-[#FF5733]"
-                      }`}
+                      className={`w-5 h-5 fill-[#FF5733] text-[#FF5733]`}
                     />
                   ))}
                 </div>
 
                 {/* Text */}
                 <p
-                  className={`text-sm leading-relaxed mb-4 ${
-                    activeIndex === index ? "text-gray-300" : "text-gray-600"
+                  className={`text-base leading-relaxed mb-6 ${
+                    activeIndex === index ? "text-gray-300" : "text-[#6B7280]"
                   }`}
                 >
-                  {testimonial.text}
+                  "{testimonial.text}"
                 </p>
 
                 {/* Author */}
                 <div className="flex items-center justify-between">
                   <div>
                     <h5
-                      className={`font-semibold ${
-                        activeIndex === index ? "text-white" : "text-[#0D0D1A]"
+                      className={`font-bold text-lg ${
+                        activeIndex === index ? "text-white" : "text-[#111]"
                       }`}
                     >
                       {testimonial.name}
@@ -103,22 +112,24 @@ export function Testimonials() {
                   </div>
                   <a
                     href="#"
-                    className="text-[#FF5733] text-sm font-semibold hover:underline"
+                    className="text-[#FF5733] text-sm font-semibold hover:gap-2 transition-all inline-flex items-center gap-1"
                   >
-                    View Full Review
+                    View
                   </a>
                 </div>
               </div>
             ))}
 
             {/* Dot Navigation */}
-            <div className="flex justify-center gap-2 pt-4">
+            <div className="flex justify-center gap-3 pt-4">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    activeIndex === index ? "bg-[#FF5733]" : "bg-gray-300"
+                  className={`rounded-full transition-all duration-300 ${
+                    activeIndex === index 
+                      ? "w-8 h-3 bg-[#FF5733]" 
+                      : "w-3 h-3 bg-gray-300 hover:bg-gray-400"
                   }`}
                   aria-label={`View testimonial ${index + 1}`}
                 />
