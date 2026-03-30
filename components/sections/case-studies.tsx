@@ -83,7 +83,7 @@ export function CaseStudies() {
                 className="group relative bg-gradient-to-br from-[#1A1A2E] to-[#0D0D1A] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[#FF5733]/20 transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="flex flex-col sm:flex-row h-full">
-                  <div className="relative w-full sm:w-56 h-56 sm:h-auto flex-shrink-0 overflow-hidden">
+                  <div className="relative w-full sm:w-56 h-56 flex-shrink-0 overflow-hidden">
                     <Image
                       src={study.image}
                       alt={study.title}
