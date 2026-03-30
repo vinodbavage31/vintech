@@ -23,43 +23,55 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-[#F8F9FB]">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left - FAQ Accordion */}
-          <div>
-            <p className="text-[#FF5733] text-sm font-semibold uppercase tracking-wider mb-3">
-              Client FAQs
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0D0D1A] mb-8 text-balance">
+          <div className="space-y-8">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200">
+              <div className="w-2 h-2 rounded-full bg-[#FF5733]" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-gray-600">Client FAQs</span>
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-5xl font-bold text-[#111] text-balance">
               Most Common{" "}
               <span className="text-[#FF5733]">Question?</span>
             </h2>
 
             {/* Accordion */}
-            <div className="space-y-4">
+            <div className="space-y-4 pt-4">
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className="border border-gray-200 rounded-xl overflow-hidden"
+                  className={`border-2 rounded-2xl overflow-hidden transition-all duration-300 ${
+                    openIndex === index
+                      ? "border-[#FF5733] bg-white shadow-lg"
+                      : "border-gray-200 bg-white hover:border-gray-300"
+                  }`}
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-gray-50 transition-colors"
+                    className={`w-full flex items-center justify-between p-6 text-left transition-colors ${
+                      openIndex === index ? "bg-[#FF5733]/5" : "hover:bg-gray-50"
+                    }`}
                   >
-                    <span className="font-semibold text-[#0D0D1A]">{faq.question}</span>
+                    <span className={`font-semibold text-lg ${
+                      openIndex === index ? "text-[#FF5733]" : "text-[#111]"
+                    }`}>{faq.question}</span>
                     <ChevronDown
-                      className={`w-5 h-5 text-[#FF5733] transition-transform duration-300 ${
+                      className={`w-6 h-6 text-[#FF5733] transition-transform duration-300 flex-shrink-0 ml-4 ${
                         openIndex === index ? "rotate-180" : ""
                       }`}
                     />
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-300 ${
-                      openIndex === index ? "max-h-48" : "max-h-0"
+                      openIndex === index ? "max-h-96" : "max-h-0"
                     }`}
                   >
-                    <p className="p-5 pt-0 text-gray-600 text-sm leading-relaxed">
+                    <p className="p-6 pt-2 text-[#6B7280] text-base leading-relaxed border-t border-gray-100">
                       {faq.answer}
                     </p>
                   </div>
@@ -69,13 +81,15 @@ export function FAQ() {
           </div>
 
           {/* Right - Image */}
-          <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden">
+          <div className="relative h-[450px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl">
             <Image
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=700&fit=crop"
               alt="Person working at desk"
               fill
               className="object-cover"
             />
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D1A]/30 via-transparent to-transparent" />
           </div>
         </div>
       </div>

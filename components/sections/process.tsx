@@ -25,14 +25,15 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-[#F8F9FB]">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-[#FF5733] text-sm font-semibold uppercase tracking-wider mb-3">
-            Work Process
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0D0D1A]">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200 mb-6">
+            <div className="w-2 h-2 rounded-full bg-[#FF5733]" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-gray-600">Work Process</span>
+          </div>
+          <h2 className="text-5xl font-bold text-[#111] text-balance">
             WORKS IN 3 EASY STEPS
           </h2>
         </div>
@@ -40,35 +41,38 @@ export function Process() {
         {/* Steps */}
         <div className="relative">
           {/* Dashed line connector - hidden on mobile */}
-          <div className="hidden lg:block absolute top-1/4 left-1/4 right-1/4 border-t-2 border-dashed border-gray-300" />
+          <div className="hidden lg:block absolute top-32 left-1/3 right-1/3 border-t-2 border-dashed border-[#FF5733]/30 h-0" />
 
           <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step, index) => (
               <div key={index} className="text-center relative">
-                {/* Image */}
-                <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                  <Image
-                    src={step.image}
-                    alt={step.title}
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Number badge */}
-                  <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-[#FF5733] rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
-                    {step.number}
+                {/* Circle with number - positioned absolutely for dashed line */}
+                <div className="flex flex-col items-center">
+                  {/* Image Circle */}
+                  <div className="relative w-40 h-40 mx-auto mb-8 rounded-full overflow-hidden border-8 border-white shadow-2xl bg-gray-200">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Number badge - larger */}
+                    <div className="absolute -bottom-4 -right-4 w-14 h-14 bg-[#FF5733] rounded-full flex items-center justify-center text-white font-bold text-xl shadow-xl ring-4 ring-white">
+                      {step.number}
+                    </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <h3 className="text-xl font-bold text-[#0D0D1A] mb-3">{step.title}</h3>
-                <p className="text-gray-600 text-sm max-w-xs mx-auto">{step.description}</p>
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-[#111] mb-3">{step.title}</h3>
+                  <p className="text-[#6B7280] text-base max-w-sm leading-relaxed">{step.description}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Footer text */}
-        <p className="text-center text-gray-500 mt-12 text-sm">
+        <p className="text-center text-[#6B7280] mt-20 text-base font-medium">
           We are following a &quot;Excellent Customer Experience since 1999&quot;
         </p>
       </div>

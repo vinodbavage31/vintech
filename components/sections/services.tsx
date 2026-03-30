@@ -26,36 +26,37 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-20 bg-[#F8F9FB]">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-[#FF5733] text-sm font-semibold uppercase tracking-wider mb-3">
-            Our Services
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0D0D1A]">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200 mb-6">
+            <div className="w-2 h-2 rounded-full bg-[#FF5733]" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-gray-600">Our Services</span>
+          </div>
+          <h2 className="text-5xl font-bold text-[#111] text-balance">
             EXCLUSIVE IT SERVICES
           </h2>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col h-full"
             >
               {/* Icon Header */}
-              <div className="p-6 border-b">
-                <div className="w-14 h-14 bg-[#FF5733]/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#FF5733] transition-colors">
-                  <service.icon className="w-7 h-7 text-[#FF5733] group-hover:text-white transition-colors" />
+              <div className="p-8 pb-6">
+                <div className="w-16 h-16 bg-[#FF5733] rounded-2xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-[#FF5733]/40 transition-all duration-300">
+                  <service.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0D0D1A] mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm">{service.description}</p>
+                <h3 className="text-xl font-bold text-[#111] mb-3">{service.title}</h3>
+                <p className="text-base text-[#6B7280] leading-relaxed">{service.description}</p>
               </div>
 
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-56 overflow-hidden bg-gray-200 flex-1">
                 <Image
                   src={service.image}
                   alt={service.title}
