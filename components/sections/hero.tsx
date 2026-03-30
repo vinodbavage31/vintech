@@ -1,146 +1,167 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Play, ArrowRight } from "lucide-react"
 import Image from "next/image"
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#0D0D1A] via-[#1a1a2e] to-[#0D0D1A]">
-      {/* BACKGROUND LAYER - Radial glow */}
-      <div className="absolute inset-0">
-        {/* Subtle radial gradient center-right */}
+    <section id="home" className="relative min-h-screen w-full overflow-hidden bg-[#0D0D1A]">
+      {/* BACKGROUND LAYER - Circular radial pattern */}
+      <div className="absolute inset-0 z-0">
+        {/* Subtle concentric circles pattern on left side */}
+        <svg 
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-10"
+          viewBox="0 0 600 600"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <circle 
+              key={i}
+              cx="300" 
+              cy="300" 
+              r={50 * i} 
+              fill="none" 
+              stroke="#1a1a2e" 
+              strokeWidth="2"
+            />
+          ))}
+        </svg>
+      </div>
+
+      {/* V-SHAPE LAYER - The iconic diagonal design */}
+      <div className="absolute inset-0 z-10 hidden lg:block">
+        
+        {/* ORANGE DIAGONAL BAR - Main V component */}
         <div 
-          className="absolute right-1/4 top-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-10"
+          className="absolute top-0 right-1/4 w-[300px] h-screen bg-[#FF5733]"
           style={{
-            background: "radial-gradient(circle, #FF5733 0%, transparent 70%)"
+            transform: "skewX(-25deg) translateX(80px)",
+            transformOrigin: "top center"
           }}
         />
-        {/* Secondary glow for depth */}
+        
+        {/* DARK NAVY DIAGONAL BAR - Secondary V component for depth */}
         <div 
-          className="absolute right-1/3 bottom-0 w-[600px] h-[600px] rounded-full opacity-5"
+          className="absolute top-0 right-1/3 w-[200px] h-screen bg-[#0D0D1A] opacity-90"
           style={{
-            background: "radial-gradient(circle, #FF5733 0%, transparent 70%)"
+            transform: "skewX(15deg) translateX(-60px)",
+            transformOrigin: "top center"
+          }}
+        />
+
+        {/* GRADIENT OVERLAY for smooth transition */}
+        <div 
+          className="absolute right-1/4 top-0 w-96 h-screen bg-gradient-to-l from-[#FF5733] via-[#FF5733]/70 to-transparent opacity-50"
+          style={{
+            zIndex: 15
           }}
         />
       </div>
 
-      {/* SHAPE LAYER 1 - Orange diagonal shape (behind image) */}
-      <div 
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF5733]"
-        style={{
-          clipPath: "polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          transform: "skewX(-20deg) translateX(150px)",
-          zIndex: 1
-        }}
-      />
-
-      {/* SHAPE LAYER 2 - Dark navy overlay shape (for depth) */}
-      <div 
-        className="absolute right-1/3 top-0 w-[500px] h-full"
-        style={{
-          background: "linear-gradient(135deg, transparent 0%, rgba(13, 13, 26, 0.8) 50%, rgba(13, 13, 26, 0.95) 100%)",
-          clipPath: "polygon(0% 0%, 100% 20%, 100% 100%, 0% 80%)",
-          zIndex: 2
-        }}
-      />
-
-      {/* CONTENT CONTAINER */}
-      <div className="max-w-7xl mx-auto w-full px-6 relative z-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen lg:min-h-auto py-20 lg:py-0">
+      {/* CONTENT WRAPPER */}
+      <div className="relative z-20 w-full h-screen flex items-center overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full px-6 grid lg:grid-cols-2 gap-8 items-center h-full">
           
-          {/* LEFT COLUMN - Content */}
-          <div className="text-white space-y-8 flex flex-col justify-center">
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/15 w-fit">
-              <div className="w-2 h-2 rounded-full bg-[#FF5733]" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-white/70">Best IT Solution Provider</span>
+          {/* LEFT COLUMN - Text Content */}
+          <div className="text-white space-y-6 flex flex-col justify-center py-20 lg:py-0">
+            
+            {/* Small Label with Line */}
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-[#FF5733]" />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FF5733]">BEST IT SOLUTION PROVIDER</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-balance">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
               Elevate Your{" "}
-              <span className="text-[#FF5733] block">Business</span>{" "}
-              with IT Excellence
+              <span className="text-[#FF5733]">Business</span> with IT{" "}
+              Excellence
             </h1>
 
-            {/* Subheading */}
-            <p className="text-lg md:text-xl text-gray-400 max-w-lg leading-relaxed font-light">
-              We have been operating for over a decade providing expert team services to businesses worldwide with cutting-edge technology solutions.
+            {/* Subtext */}
+            <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed">
+              We have been operating for over a decade prvid have beens expert IT solutions to businesses worldwide.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              {/* Primary Button - Get Started */}
+            {/* CTA Section */}
+            <div className="flex items-center gap-4 pt-4">
+              {/* Primary CTA - Get Started Button */}
               <Button 
-                size="lg"
-                className="bg-[#FF5733] hover:bg-[#E64A2E] text-white font-bold px-10 h-14 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#FF5733]/50 group"
+                className="bg-[#FF5733] hover:bg-[#E64A2E] text-white font-bold px-8 h-12 rounded-full text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#FF5733]/40"
               >
-                Get Started
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                GET STARTED
               </Button>
 
-              {/* Secondary Button - Watch Video */}
-              <Button 
-                size="lg"
-                className="border-2 border-white text-white hover:bg-white hover:text-[#0D0D1A] font-bold px-10 h-14 rounded-full transition-all duration-300 hover:scale-105 group"
-              >
-                <Play className="w-5 h-5 mr-2 fill-current" />
-                Watch Our Video
-              </Button>
+              {/* Secondary CTA - Meet Our Experts */}
+              <div className="flex items-center gap-2 cursor-pointer group">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF5733] to-[#E64A2E] flex items-center justify-center text-white text-xs font-bold shadow-lg overflow-hidden flex-shrink-0">
+                  <Image
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop"
+                    alt="Expert avatar"
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="text-sm font-semibold text-white group-hover:text-[#FF5733] transition-colors">MEET OUR EXPERTS</span>
+              </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN - Image with layered shapes */}
-          <div className="relative hidden lg:flex items-center justify-center min-h-screen lg:min-h-auto">
-            
-            {/* IMAGE LAYER - Professional working image */}
-            <div className="relative w-full h-[600px] z-30">
-              {/* Image container with rounded corners */}
-              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=700&fit=crop"
-                  alt="Professional team collaboration"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-500"
-                  priority
-                />
-                
-                {/* Subtle overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#0D0D1A]/20 via-transparent to-transparent" />
-              </div>
-
-              {/* Floating orange accent element (top right) */}
-              <div 
-                className="absolute -top-6 -right-6 w-32 h-32 bg-[#FF5733] rounded-3xl shadow-2xl shadow-[#FF5733]/40 hover:scale-110 transition-transform duration-300 z-40"
-                style={{ transform: "rotate(-15deg)" }}
-              />
-
-              {/* Subtle shadow beneath image for depth */}
-              <div 
-                className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-4/5 h-20 bg-[#FF5733] rounded-full blur-3xl opacity-20 -z-10"
+          {/* RIGHT COLUMN - Image (positioned over V-shape) */}
+          <div className="relative hidden lg:flex items-center justify-end h-full">
+            {/* Image positioned to overlap with V-shape */}
+            <div className="relative w-full max-w-2xl h-[600px]">
+              <Image
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=800&fit=crop"
+                alt="Professional working with design"
+                fill
+                className="object-cover"
+                priority
               />
             </div>
+
+            {/* Warm light glow effect near top-right */}
+            <div 
+              className="absolute top-0 right-0 w-96 h-96 bg-[#FF5733] rounded-full blur-3xl opacity-20 -z-10"
+            />
           </div>
         </div>
       </div>
 
-      {/* Mobile Image - Below content on small screens */}
-      <div className="lg:hidden relative w-full px-6 pb-12">
-        <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-2xl">
+      {/* Mobile Layout - Simplified diagonal */}
+      <div className="lg:hidden relative w-full flex flex-col items-center justify-center min-h-screen py-20 px-6">
+        {/* Simplified shape for mobile */}
+        <div 
+          className="absolute top-0 right-0 w-48 h-96 bg-[#FF5733] opacity-20"
+          style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
+        />
+        
+        {/* Text content */}
+        <div className="relative z-10 text-center space-y-6 mb-12">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#FF5733] block">BEST IT SOLUTION PROVIDER</span>
+          <h1 className="text-4xl md:text-5xl font-black leading-tight">
+            Elevate Your <span className="text-[#FF5733]">Business</span> with IT Excellence
+          </h1>
+          <p className="text-base text-gray-400 max-w-sm mx-auto">
+            We have been operating for over a decade providing expert IT solutions to businesses worldwide.
+          </p>
+          <Button 
+            className="bg-[#FF5733] hover:bg-[#E64A2E] text-white font-bold px-8 h-12 rounded-full w-full sm:w-auto"
+          >
+            GET STARTED
+          </Button>
+        </div>
+
+        {/* Image below text on mobile */}
+        <div className="relative w-full h-80 rounded-2xl overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=500&fit=crop"
-            alt="Professional team collaboration"
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop"
+            alt="Professional working"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#0D0D1A]/20 via-transparent to-transparent" />
         </div>
-        {/* Mobile accent shape */}
-        <div 
-          className="absolute -top-4 -right-4 w-24 h-24 bg-[#FF5733] rounded-2xl shadow-lg -z-10"
-          style={{ transform: "rotate(-15deg)" }}
-        />
       </div>
     </section>
   )
